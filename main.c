@@ -6,13 +6,13 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 13:19:41 by lyanga            #+#    #+#             */
-/*   Updated: 2025/09/27 13:50:31 by lyanga           ###   ########.fr       */
+/*   Updated: 2025/09/27 15:50:24 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int main (int argc, char **argv, char **envp)
+int main(int argc, char **argv, char **envp)
 {
 	// 1. Check argument count (should be 5: ./pipex infile cmd1 cmd2 outfile)
     //    - If not, print error and exit.
