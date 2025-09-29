@@ -6,7 +6,7 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 13:22:43 by lyanga            #+#    #+#             */
-/*   Updated: 2025/09/27 13:26:59 by lyanga           ###   ########.fr       */
+/*   Updated: 2025/09/29 01:21:14 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,8 @@
 
 # include "libft.h"
 
+char *get_command_path(char *cmd, char **envp);
+char **parse_command(char *cmd, char **envp);
+void free_split(char **split);
 
 #endif

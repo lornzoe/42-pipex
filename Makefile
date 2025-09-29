@@ -6,7 +6,7 @@
 #    By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/27 15:41:46 by lyanga            #+#    #+#              #
-#    Updated: 2025/09/27 15:49:26 by lyanga           ###   ########.fr        #
+#    Updated: 2025/09/29 23:59:08 by lyanga           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,12 +16,16 @@ OUTDIR      =   .
 
 # Compiler and flags
 CC          =   cc
-CFLAGS      =   -Wall -Werror -Wextra -std=gnu89
+CFLAGS      =   -Wall -Werror -Wextra
 DEBUG_FLAGS =   -g -O0
 RM          =   rm -f
 
+ifeq ($(DEBUG),1)
+    CFLAGS += $(DEBUG_FLAGS)
+endif
+
 # Source files and objects
-SRCS        =   main.c \
+SRCS        =   main.c parse.c
 OBJS        =   $(SRCS:.c=.o)
 
 # Directories for external libraries
