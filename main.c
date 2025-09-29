@@ -6,7 +6,7 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 13:19:41 by lyanga            #+#    #+#             */
-/*   Updated: 2025/09/30 03:29:58 by lyanga           ###   ########.fr       */
+/*   Updated: 2025/09/30 03:59:16 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int main(int argc, char **argv, char **envp)
 	if (outfile < 0)
 	{
 		perror("Error opening/creating outfile");
-		close(infile);
+		//close(infile);
 		fileerror = 1; 
 	}
 
@@ -51,7 +51,8 @@ int main(int argc, char **argv, char **envp)
 	if (pid1 < 0)
 	{
 		perror("Error forking first child");
-		close(infile);
+		if (infile >= 0)
+			close(infile);
 		close(outfile);
 		close(pipefd[0]);
 		close(pipefd[1]);
@@ -74,12 +75,14 @@ int main(int argc, char **argv, char **envp)
 		if (dup2(pipefd[1], STDOUT_FILENO) == -1)
 		{
 			perror("Error duplicating file descriptors");
-			close(infile);
+			if (infile >= 0)
+				close(infile);
 			close(outfile);
 			close(pipefd[1]);
 			exit (1);
 		}
-		close(infile);
+		if (infile >= 0)
+			close(infile);
 		close(outfile);
 		close(pipefd[1]);
 		char **args1 = parse_command(argv[2], envp);
@@ -106,8 +109,10 @@ int main(int argc, char **argv, char **envp)
 	if (pid2 < 0)
 	{
 		perror("Error forking second child");
-		close(infile);
-		close(outfile);
+		if (infile >= 0)
+			close(infile);
+		if (outfile >= 0)
+			close(outfile);
 		close(pipefd[0]);
 		close(pipefd[1]);
 		return (1);
@@ -115,27 +120,34 @@ int main(int argc, char **argv, char **envp)
 	if (pid2 == 0)
 	{
 		close(pipefd[1]);
+		if (dup2(pipefd[0], STDIN_FILENO) == -1)
+		{
+			perror("Error duplicating file descriptors");
+			if (infile >= 0)
+				close(infile);
+			if (outfile >= 0)
+				close(outfile);
+			close(pipefd[0]);
+			exit(1);
+		}
 		if (outfile >= 0)
 		{
 			if (dup2(outfile, STDOUT_FILENO) == -1)
 			{
 				perror("Error duplicating file descriptors");
-				close(infile);
-				close(outfile);
+				if (infile >= 0)
+					close(infile);
+				if (outfile >= 0)
+					close(outfile);
 				close(pipefd[0]);
 				exit(1);
 			}
 		}
-		if (dup2(pipefd[0], STDIN_FILENO) == -1)
-		{
-			perror("Error duplicating file descriptors");
+		
+		if (infile >= 0)
 			close(infile);
+		if (outfile >= 0)
 			close(outfile);
-			close(pipefd[0]);
-			exit(1);
-		}
-		close(infile);
-		close(outfile);
 		close(pipefd[0]);
 		char **args2 = parse_command(argv[3], envp);
 		if (args2 != NULL)
