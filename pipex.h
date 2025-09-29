@@ -6,7 +6,7 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 13:22:43 by lyanga            #+#    #+#             */
-/*   Updated: 2025/09/29 01:21:14 by lyanga           ###   ########.fr       */
+/*   Updated: 2025/09/30 04:13:53 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # include <string.h>     // strerror (if needed)
 
 # include "libft.h"
+
+# define INFILE 0
+# define OUTFILE 1
 
 char *get_command_path(char *cmd, char **envp);
 char **parse_command(char *cmd, char **envp);
