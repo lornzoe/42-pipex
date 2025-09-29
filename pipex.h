@@ -6,7 +6,7 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 13:22:43 by lyanga            #+#    #+#             */
-/*   Updated: 2025/09/30 04:13:53 by lyanga           ###   ########.fr       */
+/*   Updated: 2025/09/30 04:23:54 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <fcntl.h>      // open
 # include <sys/wait.h>   // wait, waitpid
 # include <string.h>     // strerror (if needed)
+# include <stdarg.h>
 
 # include "libft.h"
 
