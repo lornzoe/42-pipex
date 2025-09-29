@@ -1,39 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/28 21:44:17 by lyanga            #+#    #+#             */
-/*   Updated: 2025/09/30 07:18:08 by lyanga           ###   ########.fr       */
+/*   Created: 2025/09/30 07:10:40 by lyanga            #+#    #+#             */
+/*   Updated: 2025/09/30 07:20:41 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char	**parse_command(char *cmd, char **envp)
+void	free_split(char **split)
 {
-	char	**args;
-	char	*temp;
+	int	i;
 
-	if (!cmd || !*cmd)
-		return (NULL);
-	args = ft_split(cmd, ' ');
-	if (!args || !args[0])
+	if (!split)
+		return ;
+	i = 0;
+	while (split[i])
 	{
-		if (args)
-			free_split(args);
-		return (NULL);
+		free(split[i]);
+		i++;
 	}
-	temp = args[0];
-	args[0] = get_command_path(args[0], envp);
-	if (!args[0])
-	{
-		free(temp);
-		free_split(args);
-		return (NULL);
-	}
-	free(temp);
-	return (args);
+	free(split);
 }

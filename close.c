@@ -1,28 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   close.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/27 15:57:17 by lyanga            #+#    #+#             */
-/*   Updated: 2025/09/27 17:19:51 by lyanga           ###   ########.fr       */
+/*   Created: 2025/09/30 05:20:19 by lyanga            #+#    #+#             */
+/*   Updated: 2025/09/30 07:13:40 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-#include <unistd.h>
 
-int main(int argc, char **argv, char **envp)
+void	close_2(int fd1, int fd2)
 {
-    char *const arg[] = {"ls", "asdf", NULL};
-    
-    printf("test output\n");
+	if (fd1 >= 0)
+		close(fd1);
+	if (fd2 >= 0)
+		close(fd2);
+}
 
-    int x = execve("/usr/bin/ls", arg, envp);
-    perror("execve");
-    
-    printf("output of x: %d\n", x);
+void	close_3(int fd1, int fd2, int fd3)
+{
+	if (fd1 >= 0)
+		close(fd1);
+	if (fd2 >= 0)
+		close(fd2);
+	if (fd3 >= 0)
+		close(fd3);
+}
 
-    return 0;
+void	close_4(int fd1, int fd2, int fd3, int fd4)
+{
+	if (fd1 >= 0)
+		close(fd1);
+	if (fd2 >= 0)
+		close(fd2);
+	if (fd3 >= 0)
+		close(fd3);
+	if (fd4 >= 0)
+		close(fd4);
 }

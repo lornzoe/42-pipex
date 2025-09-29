@@ -6,7 +6,7 @@
 #    By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/27 15:41:46 by lyanga            #+#    #+#              #
-#    Updated: 2025/09/29 23:59:08 by lyanga           ###   ########.fr        #
+#    Updated: 2025/09/30 07:12:12 by lyanga           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ ifeq ($(DEBUG),1)
 endif
 
 # Source files and objects
-SRCS        =   main.c parse.c
+SRCS        =   main.c parse.c run_pids.c initialise.c close.c path.c utils.c
 OBJS        =   $(SRCS:.c=.o)
 
 # Directories for external libraries
