@@ -6,7 +6,7 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 13:22:43 by lyanga            #+#    #+#             */
-/*   Updated: 2025/09/30 07:25:16 by lyanga           ###   ########.fr       */
+/*   Updated: 2025/10/01 06:58:13 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@
 
 // util.c
 void	free_split(char **split);
+
+// ft_realloc.c
+void	*ft_realloc(void *ptr, size_t old_size, size_t new_size);
 
 // path.c
 char	*get_command_path(char *cmd, char **envp);
