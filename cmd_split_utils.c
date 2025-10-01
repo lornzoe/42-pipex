@@ -6,7 +6,7 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 10:11:47 by lyanga            #+#    #+#             */
-/*   Updated: 2025/10/01 10:15:34 by lyanga           ###   ########.fr       */
+/*   Updated: 2025/10/01 10:54:51 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,22 @@ void    init_t_parser(t_parser *p)
 	p->in_quote = S_NORMAL;
 	p->token_buf = NULL;
 	p->buf_len = 0;
+}
+
+int	t_parser_append_char(t_parser *p, char c)
+{
+	char	*new_token;
+	size_t	old_len;
+	size_t	new_len;
+
+	old_len = p->buf_len + 1;
+	new_len = p->buf_len + 2;
+	new_token = (char *)ft_realloc(p->token_buf, old_len, new_len);
+	if (new_token == NULL)
+		return (0);
+	p->token_buf = new_token;
+	(p->token_buf)[p->buf_len] = c;
+	(p->buf_len)++;
+	(p->token_buf)[p->buf_len] = '\0';
+	return (1);
 }

@@ -6,7 +6,7 @@
 #    By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/27 15:41:46 by lyanga            #+#    #+#              #
-#    Updated: 2025/09/30 07:12:12 by lyanga           ###   ########.fr        #
+#    Updated: 2025/10/01 11:02:00 by lyanga           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ ifeq ($(DEBUG),1)
 endif
 
 # Source files and objects
-SRCS        =   main.c parse.c run_pids.c initialise.c close.c path.c utils.c
+SRCS        =   main.c parse.c run_pids.c initialise.c close.c path.c utils.c ft_realloc.c cmd_split.c cmd_split_utils.c
 OBJS        =   $(SRCS:.c=.o)
 
 # Directories for external libraries
