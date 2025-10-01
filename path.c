@@ -6,7 +6,7 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 07:11:46 by lyanga            #+#    #+#             */
-/*   Updated: 2025/09/30 07:19:21 by lyanga           ###   ########.fr       */
+/*   Updated: 2025/10/01 15:41:26 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ static char	*search_in_paths(char **paths, char *cmd)
 		}
 		if (access(full_path, X_OK) == 0)
 		{
-			free_split(paths);
 			return (full_path);
 		}
 		free(full_path);
@@ -94,7 +93,6 @@ char	*get_command_path(char *cmd, char **envp)
 	if (!paths)
 		return (NULL);
 	result = search_in_paths(paths, cmd);
-	if (!result)
-		free_split(paths);
+	free_split(paths);
 	return (result);
 }

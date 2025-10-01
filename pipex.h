@@ -6,7 +6,7 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 13:22:43 by lyanga            #+#    #+#             */
-/*   Updated: 2025/10/01 10:50:49 by lyanga           ###   ########.fr       */
+/*   Updated: 2025/10/01 16:03:13 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,11 @@ typedef struct s_parser
 	int		in_quote;
 	char	*token_buf;
 	size_t	buf_len;
-}   t_parser;
+}	t_parser;
 
 char	**cmd_split(char *str);
 // - helper funcs
 void	cleanup_t_parser(t_parser *p);
-void    init_t_parser(t_parser *p);
-int 	t_parser_append_char(t_parser *p, char c);
+void	init_t_parser(t_parser *p);
+int		t_parser_append_char(t_parser *p, char c);
 #endif

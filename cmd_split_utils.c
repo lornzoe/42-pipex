@@ -6,7 +6,7 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 10:11:47 by lyanga            #+#    #+#             */
-/*   Updated: 2025/10/01 10:54:51 by lyanga           ###   ########.fr       */
+/*   Updated: 2025/10/01 16:02:40 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	cleanup_t_parser(t_parser *p)
 	}
 }
 
-void    init_t_parser(t_parser *p)
+void	init_t_parser(t_parser *p)
 {
-    p->tokens = NULL;
+	p->tokens = NULL;
 	p->t_count = 0;
 	p->in_quote = S_NORMAL;
 	p->token_buf = NULL;
