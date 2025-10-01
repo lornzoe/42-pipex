@@ -6,49 +6,11 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 16:16:29 by lyanga            #+#    #+#             */
-/*   Updated: 2025/10/01 07:39:04 by lyanga           ###   ########.fr       */
+/*   Updated: 2025/10/01 10:15:51 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
-#include <stdio.h>
-
-// --- State Definitions ---
-#define S_NORMAL 0
-#define S_SINGLE 1
-#define S_DOUBLE 2
-
-// --- Data Structure for Parser State ---
-typedef struct s_parser
-{
-	char	**tokens;
-	int		t_count;
-	int		in_quote;
-	char	*token_buf;
-	size_t	buf_len;
-}				t_parser;
-
-// Assumed prototype for custom realloc (must be linked from ft_realloc.c)
-void	*ft_realloc(void *ptr, size_t old_size, size_t new_size);
-
-static void	ft_cleanup_shlex(t_parser *p)
-{
-	int	i;
-
-	i = 0;
-	if (p->token_buf)
-		free(p->token_buf);
-	if (p->tokens)
-	{
-		while (i < p->t_count)
-		{
-			free(p->tokens[i]);
-			i++;
-		}
-		free(p->tokens);
-	}
-}
+#include "pipex.h"
 
 static int	ft_append_char(t_parser *p, char c)
 {
@@ -89,7 +51,6 @@ static int	ft_finalize_token(t_parser *p)
 	return (1);
 }
 
-// MODIFIED: Append the quote character before changing state.
 static int	ft_handle_normal(t_parser *p, char c, const char **s)
 {
 	if (ft_isspace(c))
@@ -117,9 +78,6 @@ static int	ft_handle_normal(t_parser *p, char c, const char **s)
 	return (1);
 }
 
-// No longer needed since logic is merged into main loop for Norm compliance.
-// static int	ft_handle_quoted(...)
-
 static char	**ft_finalize_result(t_parser *p)
 {
 	char	**final_tokens;
@@ -129,7 +87,7 @@ static char	**ft_finalize_result(t_parser *p)
 	if (p->in_quote != S_NORMAL || !ft_finalize_token(p))
 	{
 		fprintf(stderr, "Error: Parsing failed or unmatched quote.\n");
-		ft_cleanup_shlex(p);
+		cleanup_t_parser(p);
 		return (NULL);
 	}
 	old_size = p->t_count * sizeof(char *);
@@ -137,14 +95,13 @@ static char	**ft_finalize_result(t_parser *p)
 	final_tokens = (char **)ft_realloc(p->tokens, old_size, new_size);
 	if (final_tokens == NULL)
 	{
-		ft_cleanup_shlex(p);
+		cleanup_t_parser(p);
 		return (NULL);
 	}
 	final_tokens[p->t_count] = NULL; 
 	return (final_tokens);
 }
 
-// MODIFIED: Logic simplified to append all characters in a quoted state.
 char	**cmd_split(char *str)
 {
 	t_parser	p;
@@ -152,11 +109,7 @@ char	**cmd_split(char *str)
 	int			result;
 
 	s = str;
-	p.tokens = NULL;
-	p.t_count = 0;
-	p.in_quote = S_NORMAL;
-	p.token_buf = NULL;
-	p.buf_len = 0;
+	init_t_parser(&p);
 	if (str == NULL)
 		return (NULL);
 	while (*s)
@@ -169,14 +122,12 @@ char	**cmd_split(char *str)
 			if (result == 2)
 				continue ;
 		}
-		else // In quoted state
+		else
 		{
 			if (*s == '\'' && p.in_quote == S_SINGLE)
 				p.in_quote = S_NORMAL;
 			else if (*s == '\"' && p.in_quote == S_DOUBLE)
 				p.in_quote = S_NORMAL;
-			
-			// Append character regardless of whether it's the closing quote or not
 			if (!ft_append_char(&p, *s)) 
 				break ;
 		}
