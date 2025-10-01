@@ -6,14 +6,14 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 16:16:29 by lyanga            #+#    #+#             */
-/*   Updated: 2025/10/01 16:03:30 by lyanga           ###   ########.fr       */
+/*   Updated: 2025/10/01 17:25:28 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 #include <stdio.h>
 
-static int	ft_finalize_token(t_parser *p)
+static int	finalise_token(t_parser *p)
 {
 	char	**new_tokens;
 	size_t	old_size;
@@ -34,11 +34,11 @@ static int	ft_finalize_token(t_parser *p)
 	return (1);
 }
 
-static int	ft_handle_normal(t_parser *p, char c, const char **s)
+static int	handle_normal(t_parser *p, char c, const char **s)
 {
 	if (ft_isspace(c))
 	{
-		if (!ft_finalize_token(p))
+		if (!finalise_token(p))
 			return (0);
 		while (ft_isspace(**s))
 			(*s)++;
@@ -56,13 +56,13 @@ static int	ft_handle_normal(t_parser *p, char c, const char **s)
 	return (1);
 }
 
-static char	**ft_finalize_result(t_parser *p)
+static char	**finalise_result(t_parser *p)
 {
 	char	**final_tokens;
 	size_t	old_size;
 	size_t	new_size;
 
-	if (p->in_quote != S_NORMAL || !ft_finalize_token(p))
+	if (p->in_quote != S_NORMAL || !finalise_token(p))
 	{
 		fprintf(stderr, "Error: Parsing failed or unmatched quote.\n");
 		cleanup_t_parser(p);
@@ -108,7 +108,7 @@ char	**cmd_split(char *str)
 	{
 		if (p.in_quote == S_NORMAL)
 		{
-			result = ft_handle_normal(&p, *s, &s);
+			result = handle_normal(&p, *s, &s);
 			if (result == 0)
 				break ;
 			if (result == 2)
@@ -118,5 +118,5 @@ char	**cmd_split(char *str)
 			break ;
 		s++;
 	}
-	return (ft_finalize_result(&p));
+	return (finalise_result(&p));
 }
