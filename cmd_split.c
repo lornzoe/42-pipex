@@ -6,7 +6,7 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 16:16:29 by lyanga            #+#    #+#             */
-/*   Updated: 2025/10/01 17:25:28 by lyanga           ###   ########.fr       */
+/*   Updated: 2025/10/01 17:33:11 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static char	**finalise_result(t_parser *p)
 
 	if (p->in_quote != S_NORMAL || !finalise_token(p))
 	{
-		fprintf(stderr, "Error: Parsing failed or unmatched quote.\n");
+		ft_putstr_fd("Error: Parsing failed/unmatched quote.\n", STDERR_FILENO);
 		cleanup_t_parser(p);
 		return (NULL);
 	}
