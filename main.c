@@ -6,7 +6,7 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 13:19:41 by lyanga            #+#    #+#             */
-/*   Updated: 2025/09/30 07:15:35 by lyanga           ###   ########.fr       */
+/*   Updated: 2025/10/05 16:29:07 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@ static void	check_argc(int argc)
 
 int	main(int argc, char **argv, char **envp)
 {
-	int		files[2];
-	int		fileerror;
+	int		files[3];
 	int		pipefd[2];
 	int		status;
 
 	check_argc(argc);
-	fileerror = initialise_files(&files[INFILE], &files[OUTFILE], argv, argc);
+	files[FILEERROR_CHECK] = initialise_files(&files[INFILE],
+			&files[OUTFILE], argv, argc);
 	if (initialise_pipe(pipefd, files[INFILE], files[OUTFILE]) != 0)
 		return (1);
 	status = run_pids(files, pipefd, argv, envp);
-	if (fileerror)
+	if (files[FILEERROR_CHECK])
 		return (1);
 	if (status != 0)
 		return (status);

@@ -6,7 +6,7 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 13:22:43 by lyanga            #+#    #+#             */
-/*   Updated: 2025/10/01 16:03:13 by lyanga           ###   ########.fr       */
+/*   Updated: 2025/10/05 16:28:34 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 # define INFILE 0
 # define OUTFILE 1
+# define FILEERROR_CHECK 2
 
 // util.c
 void	free_split(char **split);

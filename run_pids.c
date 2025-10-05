@@ -6,7 +6,7 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 05:21:51 by lyanga            #+#    #+#             */
-/*   Updated: 2025/10/01 17:10:03 by lyanga           ###   ########.fr       */
+/*   Updated: 2025/10/05 17:25:35 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ static void	handle_pid1(char **argv, char **envp, int fdstokill[2])
 	}
 }
 
-int	run_pids(int files[2], int pipefd[2], char **argv, char **envp)
+int	run_pids(int files[3], int pipefd[2], char **argv, char **envp)
 {
 	pid_t	pid[2];
 	int		status[2];
@@ -134,15 +134,16 @@ int	run_pids(int files[2], int pipefd[2], char **argv, char **envp)
 	initialise_fork(&pid[1], files, pipefd);
 	if (pid[1] == 0)
 	{
+		if (files[FILEERROR_CHECK])
+		{
+			close_3(files[INFILE], pipefd[0], pipefd[1]);
+			exit(1);
+		}
 		setup_pid1(pipefd, files, fdstoclose);
 		handle_pid1(argv, envp, fdstoclose);
 	}
 	close_4(files[INFILE], files[OUTFILE], pipefd[0], pipefd[1]);
 	waitpid(pid[0], &status[0], 0);
 	waitpid(pid[1], &status[1], 0);
-	if (WIFEXITED(status[1]))
-		return (WEXITSTATUS(status[1]));
-	if (WIFEXITED(status[0]))
-		return (WEXITSTATUS(status[0]));
-	return (0);
+	return (WEXITSTATUS(status[1]));
 }
