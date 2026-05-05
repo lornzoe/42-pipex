@@ -6,7 +6,7 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 15:16:12 by lyanga            #+#    #+#             */
-/*   Updated: 2026/05/05 18:54:45 by lyanga           ###   ########.fr       */
+/*   Updated: 2026/05/05 19:27:04 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	check_argc(int argc)
 	}
 }
 
-static void init_pipex(t_pipex *pipex)
+static void	init_pipex(t_pipex *pipex)
 {
 	pipex->infile = -1;
 	pipex->outfile = -1;
@@ -38,7 +38,7 @@ static void init_pipex(t_pipex *pipex)
 	pipex->filestatus = 0;
 }
 
-static void cleanup_pipex_fds(t_pipex pipex)
+static void	cleanup_pipex_fds(t_pipex pipex)
 {
 	if (pipex.infile >= 0)
 		close(pipex.infile);
@@ -48,10 +48,10 @@ static void cleanup_pipex_fds(t_pipex pipex)
 	pipex.outfile = -1;
 }
 
-static char** build_cmds(int argc, char **argv)
+static char	**build_cmds(int argc, char **argv)
 {
-	char **cmds;
-	int i;
+	char	**cmds;
+	int		i;
 
 	cmds = malloc(sizeof(char *) * (argc - 2));
 	i = 0;
@@ -61,13 +61,13 @@ static char** build_cmds(int argc, char **argv)
 		i++;
 	}
 	cmds[i] = NULL;
-	return cmds;
+	return (cmds);
 }
 
 int	main(int argc, char **argv, char **envp)
 {
 	t_pipex	pipex;
-	char **cmds;
+	char	**cmds;
 
 	check_argc(argc);
 	init_pipex(&pipex);
