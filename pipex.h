@@ -6,7 +6,7 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 13:22:43 by lyanga            #+#    #+#             */
-/*   Updated: 2026/05/05 16:12:21 by lyanga           ###   ########.fr       */
+/*   Updated: 2026/05/05 17:43:35 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,10 @@ void	free_split(char **split);
 // path.c
 char	*get_command_path(char *cmd, char **envp);
 
-//parse.c
+// parse.c
 char	**parse_command(char *cmd, char **envp);
+
+// exec_chain.c
+int    picoshell(char **cmds, char **envp, t_pipex pipex);
 
 #endif
