@@ -6,7 +6,7 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 15:16:12 by lyanga            #+#    #+#             */
-/*   Updated: 2026/05/05 16:18:41 by lyanga           ###   ########.fr       */
+/*   Updated: 2026/05/05 17:22:50 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,36 +59,70 @@ int    picoshell(char **cmds, char **envp, t_pipex pipex)
 			if (nextfd != -1)
 			{
 				if (dup2(nextfd, STDIN_FILENO) == -1)
+				{
+					free(cmds);
 					exit(1);
+				}
 				close(nextfd);
 			}
 			if (cmds[i+1])
 			{
-				if (i == 0 && pipex.infile >= 0)
+				if (i == 0)
 				{
-					if (dup2(pipex.infile, STDIN_FILENO) == -1)
+					if (pipex.infile >= 0)
+					{
+						if (dup2(pipex.infile, STDIN_FILENO) == -1)
+						{
+							free(cmds);
+							exit(1);
+						}
+						close(pipex.infile);
+					}
+					else
+					{
+						free(cmds);
 						exit(1);
-					close(pipex.infile);
-				}
+					}
+				} 
 				close(pipefd[0]);
 				if (dup2(pipefd[1], STDOUT_FILENO) == -1)
+				{
+					free(cmds);
 					exit(1);
+				}
 				close(pipefd[1]);
 			}
 			else if (pipex.outfile >= 0)
 			{
 				if (dup2(pipex.outfile, STDOUT_FILENO) == -1)
+				{
+					free(cmds);
 					exit(1);
+				}
 				close(pipex.outfile);
 			}
-
+			// close(STDIN_FILENO);
+			// close(STDOUT_FILENO);
 			char **args = parse_command(cmds[i], envp);
 			if (args != NULL)
 			{
 				execve(args[0], args, envp);
+				close(STDIN_FILENO);
+				close (STDOUT_FILENO);
+				free(cmds);
 				exit(1); // if execvp fails
 			}
+			else
+			{
+				close(STDIN_FILENO);
+				close (STDOUT_FILENO);
+				free(cmds);
+				exit(127);
+			}
 		}
+		// printf("waiting for waitpid... \n");
+		waitpid(pid, &pipex.status, 0);
+		// printf("waitpid done\n");
 		if (nextfd != -1)
 			close(nextfd);
 		if (cmds[i+1])
@@ -98,7 +132,6 @@ int    picoshell(char **cmds, char **envp, t_pipex pipex)
 		}
 		i++;
 	}
-	waitpid(pid, &pipex.status, 0);
 	return WEXITSTATUS(pipex.status);
 }
 
