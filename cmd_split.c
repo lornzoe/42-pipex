@@ -6,12 +6,11 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 16:16:29 by lyanga            #+#    #+#             */
-/*   Updated: 2025/10/01 17:33:11 by lyanga           ###   ########.fr       */
+/*   Updated: 2026/05/07 10:41:14 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-#include <stdio.h>
 
 static int	finalise_token(t_parser *p)
 {

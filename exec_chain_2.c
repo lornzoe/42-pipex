@@ -6,13 +6,11 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 19:22:48 by lyanga            #+#    #+#             */
-/*   Updated: 2026/05/05 19:27:15 by lyanga           ###   ########.fr       */
+/*   Updated: 2026/05/07 10:41:39 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-#include <stdlib.h>
-#include <unistd.h>
 
 void	exec_cmd(int i, char **cmds, char **envp)
 {

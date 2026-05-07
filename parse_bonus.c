@@ -6,14 +6,12 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 21:44:17 by lyanga            #+#    #+#             */
-/*   Updated: 2026/05/05 20:05:01 by lyanga           ###   ########.fr       */
+/*   Updated: 2026/05/07 10:44:12 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "pipex_bonus.h"
-#include <stdio.h>
-#include <unistd.h>
 
 static char	**split_attempt(char *cmd)
 {
