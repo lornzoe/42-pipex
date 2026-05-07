@@ -6,7 +6,7 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 15:16:12 by lyanga            #+#    #+#             */
-/*   Updated: 2026/05/07 08:39:40 by lyanga           ###   ########.fr       */
+/*   Updated: 2026/05/07 10:32:59 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,10 @@ int	main(int argc, char **argv, char **envp)
 	pipex.infile = open(pipex.infile_loc, O_RDONLY);
 	if (pipex.infile < 0)
 		perror("Error opening infile");
-	pipex.outfile = open(argv[argc - 1], O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	if (pipex.has_heredoc)
+		pipex.outfile = open(argv[argc - 1], O_WRONLY | O_CREAT | O_APPEND, 0644);
+	else
+		pipex.outfile = open(argv[argc - 1], O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (pipex.outfile < 0)
 	{
 		perror("Error opening/creating outfile");
