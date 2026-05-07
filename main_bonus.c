@@ -6,7 +6,7 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 15:16:12 by lyanga            #+#    #+#             */
-/*   Updated: 2026/05/07 10:32:59 by lyanga           ###   ########.fr       */
+/*   Updated: 2026/05/07 10:40:17 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ static void	init_pipex(t_pipex *pipex, int argc, char **argv)
 	{
 		pipex->has_heredoc = 1;
 		pipex->delimiter = argv[2];
-		printf("Heredoc mode: limiter = %s\n", pipex->delimiter);
 		make_heredoc(pipex);
 		pipex->infile_loc = HEREDOC_FILE_LOC;
 	}
@@ -99,7 +98,6 @@ int	main(int argc, char **argv, char **envp)
 		perror("Error opening/creating outfile");
 		pipex.filestatus = 1;
 	}
-	printf("initialisation done!\n");
 	cmds = build_cmds(argc, argv, 2 + pipex.has_heredoc);
 	pipex.status = picoshell(cmds, envp, pipex);
 	cleanup_pipex_fds(pipex);
