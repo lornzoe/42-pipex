@@ -6,7 +6,7 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 13:22:43 by lyanga            #+#    #+#             */
-/*   Updated: 2026/05/05 20:08:50 by lyanga           ###   ########.fr       */
+/*   Updated: 2026/05/07 08:18:29 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@
 typedef struct s_pipex
 {
 	int has_heredoc;
-	char *limiter;
+	char *delimiter;
 	int	infile;
+	char *infile_loc; 
 	int	outfile;
 	int	filestatus;
 	int	status;
@@ -64,5 +65,11 @@ int		picoshell(char **cmds, char **envp, t_pipex pipex);
 // exec_chain_2.c
 void	exec_cmd(int i, char **cmds, char **envp);
 void	dup_pipefds(char **cmds, int i, t_pipex pipex, int pipefd[]);
+
+// heredoc.c
+# ifndef HEREDOC_FILE_LOC 
+#  define HEREDOC_FILE_LOC "/tmp/heredoc_pipex_lyanga"
+# endif
+void	make_heredoc(t_pipex *pipex);
 
 #endif
