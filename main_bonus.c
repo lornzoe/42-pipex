@@ -6,7 +6,7 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 15:16:12 by lyanga            #+#    #+#             */
-/*   Updated: 2026/05/07 10:43:43 by lyanga           ###   ########.fr       */
+/*   Updated: 2026/05/07 11:01:14 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@
 
 static void	check_argc(int argc, char **argv)
 {
-	if ((argc < 6 && argc >= 2 && ft_strncmp(argv[1], "here_doc", 9) == 0) 
+	if ((argc < 6 && argc >= 2 && ft_strncmp(argv[1], "here_doc", 9) == 0)
 		|| argc < 5)
 	{
-		ft_putstr_fd("Usage: ./pipex_bonus infile cmd1 cmd2 [cmd3 ...] outfile\n",
+		ft_putstr_fd("Usage: ./pipex_bonus infile cmd1 cmd2 [cmd3 ...] \
+			outfile\n",
 			STDERR_FILENO);
-		ft_putstr_fd("OR: ./pipex_bonus here_doc DELIMITER cmd1 cmd2 [cmd3 ...] outfile\n",
+		ft_putstr_fd("OR: ./pipex_bonus here_doc DELIMITER cmd1 cmd2 [cmd3 ...] \
+			outfile\n",
 			STDERR_FILENO);
 		exit(1);
 	}
@@ -36,11 +38,13 @@ static void	init_pipex(t_pipex *pipex, int argc, char **argv)
 		pipex->delimiter = argv[2];
 		make_heredoc(pipex);
 		pipex->infile_loc = HEREDOC_FILE_LOC;
+		pipex->outfile_flags = O_WRONLY | O_CREAT | O_APPEND;
 	}
 	else
 	{
-	 	pipex->has_heredoc = 0;
+		pipex->has_heredoc = 0;
 		pipex->infile_loc = argv[1];
+		pipex->outfile_flags = O_CREAT | O_WRONLY | O_TRUNC;
 	}
 	pipex->infile = -1;
 	pipex->outfile = -1;
@@ -84,10 +88,7 @@ int	main(int argc, char **argv, char **envp)
 	pipex.infile = open(pipex.infile_loc, O_RDONLY);
 	if (pipex.infile < 0)
 		perror("Error opening infile");
-	if (pipex.has_heredoc)
-		pipex.outfile = open(argv[argc - 1], O_WRONLY | O_CREAT | O_APPEND, 0644);
-	else
-		pipex.outfile = open(argv[argc - 1], O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	pipex.outfile = open(argv[argc - 1], pipex.outfile_flags, 0644);
 	if (pipex.outfile < 0)
 	{
 		perror("Error opening/creating outfile");

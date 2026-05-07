@@ -6,7 +6,7 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 19:55:57 by lyanga            #+#    #+#             */
-/*   Updated: 2026/05/07 10:42:54 by lyanga           ###   ########.fr       */
+/*   Updated: 2026/05/07 10:50:45 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 #include <fcntl.h>
 #include <sys/wait.h>
 
-static void fill_heredoc(char *delimiter)
+static void	fill_heredoc(char *delimiter)
 {
-	int fd;
-	int len;
-	char *buffer;
+	int		fd;
+	int		len;
+	char	*buffer;
 
 	fd = open(HEREDOC_FILE_LOC, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (fd < 0)
@@ -31,7 +31,7 @@ static void fill_heredoc(char *delimiter)
 		ft_putstr_fd("> ", STDOUT_FILENO);
 		buffer = ft_gnl_mandatory(STDIN_FILENO);
 		if (buffer == NULL)
-					break ;
+			break ;
 		if (ft_strncmp(buffer, delimiter, len) == 0 && buffer[len] == '\n')
 		{
 			free(buffer);
@@ -45,7 +45,7 @@ static void fill_heredoc(char *delimiter)
 	exit(0);
 }
 
-void make_heredoc(t_pipex *pipex)
+void	make_heredoc(t_pipex *pipex)
 {
 	pid_t	pid;
 	int		status;

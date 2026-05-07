@@ -6,24 +6,25 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 13:22:43 by lyanga            #+#    #+#             */
-/*   Updated: 2026/05/07 10:44:50 by lyanga           ###   ########.fr       */
+/*   Updated: 2026/05/07 11:06:04 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 
 # include "libft.h"
 
 typedef struct s_pipex
 {
-	int has_heredoc;
-	char *delimiter;
-	int	infile;
-	char *infile_loc; 
-	int	outfile;
-	int	filestatus;
-	int	status;
+	int		has_heredoc;
+	char	*delimiter;
+	int		infile;
+	char	*infile_loc;
+	int		outfile;
+	int		outfile_flags;
+	int		filestatus;
+	int		status;
 }	t_pipex;
 
 // cmd_split.c
@@ -70,6 +71,7 @@ void	dup_pipefds(char **cmds, int i, t_pipex pipex, int pipefd[]);
 # ifndef HEREDOC_FILE_LOC 
 #  define HEREDOC_FILE_LOC "/tmp/heredoc_pipex_lyanga"
 # endif
+
 void	make_heredoc(t_pipex *pipex);
 
 #endif
