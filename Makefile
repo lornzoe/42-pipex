@@ -6,7 +6,7 @@
 #    By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/27 15:41:46 by lyanga            #+#    #+#              #
-#    Updated: 2026/05/05 20:07:35 by lyanga           ###   ########.fr        #
+#    Updated: 2026/05/07 10:47:14 by lyanga           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ OUTDIR      =   .
 
 # Compiler and flags
 CC          =   cc
-CFLAGS      =   -Wall -Werror -Wextra -g -O0
+CFLAGS      =   -Wall -Werror -Wextra
 DEBUG_FLAGS =   -g -O0
 RM          =   rm -f
 
