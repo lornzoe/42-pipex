@@ -6,7 +6,7 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 15:16:12 by lyanga            #+#    #+#             */
-/*   Updated: 2026/05/07 10:43:59 by lyanga           ###   ########.fr       */
+/*   Updated: 2026/05/07 11:08:42 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	main(int argc, char **argv, char **envp)
 		pipex.filestatus = 1;
 	}
 	cmds = build_cmds(argc, argv);
-	pipex.status = picoshell(cmds, envp, pipex);
+	pipex.status = exec_chain(cmds, envp, pipex);
 	cleanup_pipex_fds(pipex);
 	free(cmds);
 	if (pipex.filestatus)

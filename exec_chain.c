@@ -6,7 +6,7 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 17:31:03 by lyanga            #+#    #+#             */
-/*   Updated: 2026/05/07 10:42:27 by lyanga           ###   ########.fr       */
+/*   Updated: 2026/05/07 11:08:42 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	close_fds(int *nextfd, int pipefd[], char *next_cmd)
 	}
 }
 
-int	picoshell(char **cmds, char **envp, t_pipex pipex)
+int	exec_chain(char **cmds, char **envp, t_pipex pipex)
 {
 	int		pipefd[2];
 	int		nextfd;

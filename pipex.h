@@ -6,7 +6,7 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 13:22:43 by lyanga            #+#    #+#             */
-/*   Updated: 2026/05/07 10:44:56 by lyanga           ###   ########.fr       */
+/*   Updated: 2026/05/07 11:08:42 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	*get_command_path(char *cmd, char **envp);
 char	**parse_command(char *cmd, char **envp);
 
 // exec_chain.c
-int		picoshell(char **cmds, char **envp, t_pipex pipex);
+int		exec_chain(char **cmds, char **envp, t_pipex pipex);
 // exec_chain_2.c
 void	exec_cmd(int i, char **cmds, char **envp);
 void	dup_pipefds(char **cmds, int i, t_pipex pipex, int pipefd[]);
