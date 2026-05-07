@@ -6,12 +6,11 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 17:31:03 by lyanga            #+#    #+#             */
-/*   Updated: 2026/05/07 11:09:35 by lyanga           ###   ########.fr       */
+/*   Updated: 2026/05/07 18:55:58 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
-#include <sys/wait.h>
 
 static void	dup_nextfd(int nextfd, char **cmds)
 {

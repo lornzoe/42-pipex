@@ -6,14 +6,12 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 15:16:12 by lyanga            #+#    #+#             */
-/*   Updated: 2026/05/07 11:08:42 by lyanga           ###   ########.fr       */
+/*   Updated: 2026/05/07 18:53:29 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "pipex.h"
-#include <fcntl.h>
-#include <stdio.h>
 
 static void	check_argc(int argc)
 {

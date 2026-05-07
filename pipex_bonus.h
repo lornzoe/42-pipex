@@ -6,7 +6,7 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 13:22:43 by lyanga            #+#    #+#             */
-/*   Updated: 2026/05/07 11:08:42 by lyanga           ###   ########.fr       */
+/*   Updated: 2026/05/07 18:58:29 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define PIPEX_BONUS_H
 
 # include "libft.h"
+
+# include <fcntl.h>
+# include <stdio.h>
+# include <sys/wait.h>
 
 typedef struct s_pipex
 {

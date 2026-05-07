@@ -6,15 +6,13 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 19:55:57 by lyanga            #+#    #+#             */
-/*   Updated: 2026/05/07 10:50:45 by lyanga           ###   ########.fr       */
+/*   Updated: 2026/05/07 18:54:58 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "pipex_bonus.h"
 #include "ft_gnl.h"
-#include <fcntl.h>
-#include <sys/wait.h>
 
 static void	fill_heredoc(char *delimiter)
 {

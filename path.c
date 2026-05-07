@@ -6,11 +6,12 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 07:11:46 by lyanga            #+#    #+#             */
-/*   Updated: 2025/10/01 15:41:26 by lyanga           ###   ########.fr       */
+/*   Updated: 2026/05/07 18:53:15 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+#include "libft.h"
 
 static void	get_path_env(char **envp, char **path_env)
 {
