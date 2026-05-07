@@ -6,7 +6,7 @@
 /*   By: lyanga <lyanga@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 17:31:03 by lyanga            #+#    #+#             */
-/*   Updated: 2026/05/07 11:08:42 by lyanga           ###   ########.fr       */
+/*   Updated: 2026/05/07 11:09:35 by lyanga           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	pipe_and_fork(char **cmds, int i, int pipefd[], pid_t *pid)
 	return (0);
 }
 
-static void	close_fds(int *nextfd, int pipefd[], char *next_cmd)
+static void	clean_fds(int *nextfd, int pipefd[], char *next_cmd)
 {
 	if (*nextfd != -1)
 		close(*nextfd);
@@ -76,7 +76,7 @@ int	exec_chain(char **cmds, char **envp, t_pipex pipex)
 			exec_cmd(i, cmds, envp);
 		}
 		waitpid(pid, &pipex.status, 0);
-		close_fds(&nextfd, pipefd, cmds[i + 1]);
+		clean_fds(&nextfd, pipefd, cmds[i + 1]);
 	}
 	return (WEXITSTATUS(pipex.status));
 }
